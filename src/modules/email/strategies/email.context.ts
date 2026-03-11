@@ -5,7 +5,7 @@ import { EmailStrategy } from './email.strategy';
 export class EmailContext {
   constructor(private readonly strategy: EmailStrategy) {}
 
-  public execute(html: string): Promise<void> {
-    return this.strategy.send(html);
+  public execute(subject: string, html: string): Promise<void> {
+    return this.strategy.send(subject, html);
   }
 }

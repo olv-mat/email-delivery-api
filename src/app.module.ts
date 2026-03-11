@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { EmailModule } from './modules/email/email.module';
 
 @Module({
-  imports: [EmailModule],
+  imports: [EmailModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [],
   providers: [],
 })
