@@ -1,3 +1,5 @@
+import { SendEmailDto } from '../dtos/send-email.dto';
+
 export abstract class EmailStrategy {
-  public abstract send(subject: string, html: string): Promise<void>;
+  public abstract send(dto: SendEmailDto): Promise<void>;
 }

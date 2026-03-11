@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { SendEmailDto } from '../dtos/send-email.dto';
 import { EmailStrategy } from './email.strategy';
 
 @Injectable()
 export class EmailContext {
   constructor(private readonly strategy: EmailStrategy) {}
 
-  public execute(subject: string, html: string): Promise<void> {
-    return this.strategy.send(subject, html);
+  public execute(dto: SendEmailDto): Promise<void> {
+    return this.strategy.send(dto);
   }
 }
