@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Resend } from 'resend';
 import { DefaultResponseDto } from '../../dtos/default-response.dto';
@@ -8,6 +8,7 @@ import { EmailStrategy } from '../email.strategy';
 @Injectable()
 export class ResendStrategy extends EmailStrategy {
   private readonly resend: Resend;
+  private readonly logger = new Logger(ResendStrategy.name);
 
   constructor(private readonly configService: ConfigService) {
     super();
@@ -24,6 +25,7 @@ export class ResendStrategy extends EmailStrategy {
       html: dto.html,
     });
     if (error) {
+      this.logger.error(error.message);
       return DefaultResponseDto.failed();
     }
     return DefaultResponseDto.success();
