@@ -1,6 +1,7 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Resend } from 'resend';
+import { DefaultResponseDto } from '../../dtos/default-response.dto';
 import { SendEmailDto } from '../../dtos/send-email.dto';
 import { EmailStrategy } from '../email.strategy';
 
@@ -15,13 +16,16 @@ export class ResendStrategy extends EmailStrategy {
     );
   }
 
-  public async send(dto: SendEmailDto): Promise<void> {
+  public async send(dto: SendEmailDto): Promise<DefaultResponseDto> {
     const { error } = await this.resend.emails.send({
       from: this.configService.getOrThrow<string>('RESEND_FROM'),
       to: this.configService.getOrThrow<string>('RESEND_TO'),
       subject: dto.subject,
       html: dto.html,
     });
-    if (error) throw new InternalServerErrorException('Failed to send email');
+    if (error) {
+      return DefaultResponseDto.failed();
+    }
+    return DefaultResponseDto.success();
   }
 }
