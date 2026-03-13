@@ -21,7 +21,7 @@ export class ResendStrategy extends EmailStrategy {
       from: this.configService.getOrThrow<string>('RESEND_FROM'),
       to: this.configService.getOrThrow<string>('RESEND_TO'),
       subject: dto.subject,
-      html: dto.html,
+      text: dto.text,
     });
     if (error) this.logger.error(error.message);
     return error === null;

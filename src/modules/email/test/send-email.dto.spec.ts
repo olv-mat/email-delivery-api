@@ -18,10 +18,10 @@ describe('SendEmailDto', () => {
   });
 
   it('should fail if not a string', async () => {
-    const dto = makeSendEmailDto({ html: null as any });
+    const dto = makeSendEmailDto({ text: null as any });
     const errors = await validate(dto);
     expect(errors.length).toBe(1);
-    expect(errors[0].property).toBe('html');
+    expect(errors[0].property).toBe('text');
     expect(errors[0].constraints).toHaveProperty('isString');
   });
 });

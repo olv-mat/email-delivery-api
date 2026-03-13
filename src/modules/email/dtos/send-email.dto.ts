@@ -7,5 +7,5 @@ export class SendEmailDto {
 
   @IsNotEmpty()
   @IsString()
-  public readonly html: string;
+  public readonly text: string;
 }
