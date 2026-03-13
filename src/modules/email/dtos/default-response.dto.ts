@@ -7,11 +7,7 @@ export class DefaultResponseDto {
     this.message = message;
   }
 
-  public static success(): DefaultResponseDto {
-    return new DefaultResponseDto(true, 'Email sent successfully');
-  }
-
-  public static failed(): DefaultResponseDto {
-    return new DefaultResponseDto(false, 'Failed to send email');
+  public static create(success: boolean, message: string): DefaultResponseDto {
+    return new DefaultResponseDto(success, message);
   }
 }

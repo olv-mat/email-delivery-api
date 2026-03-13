@@ -8,7 +8,9 @@ export class EmailService {
   constructor(private readonly context: EmailContext) {}
 
   public async send(dto: SendEmailDto): Promise<DefaultResponseDto> {
-    const success = await this.context.execute(dto);
-    return success ? DefaultResponseDto.success() : DefaultResponseDto.failed();
+    const sent = await this.context.execute(dto);
+    return sent
+      ? DefaultResponseDto.create(true, 'Email sent successfully')
+      : DefaultResponseDto.create(false, 'Failed to send email');
   }
 }
