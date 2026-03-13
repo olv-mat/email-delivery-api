@@ -7,7 +7,8 @@ import { EmailContext } from './strategies/email.context';
 export class EmailService {
   constructor(private readonly context: EmailContext) {}
 
-  public send(dto: SendEmailDto): Promise<DefaultResponseDto> {
-    return this.context.execute(dto);
+  public async send(dto: SendEmailDto): Promise<DefaultResponseDto> {
+    const success = await this.context.execute(dto);
+    return success ? DefaultResponseDto.success() : DefaultResponseDto.failed();
   }
 }

@@ -3,6 +3,7 @@ import { EmailController } from './email.controller';
 import { EmailService } from './email.service';
 import { EmailContext } from './strategies/email.context';
 import { EmailStrategy } from './strategies/email.strategy';
+import { ResendProvider } from './strategies/implementations/resend.provider';
 import { ResendStrategy } from './strategies/implementations/resend.strategy';
 
 @Module({
@@ -11,6 +12,7 @@ import { ResendStrategy } from './strategies/implementations/resend.strategy';
     EmailService,
     EmailContext,
     ResendStrategy,
+    ResendProvider,
     {
       provide: EmailStrategy,
       useExisting: ResendStrategy,

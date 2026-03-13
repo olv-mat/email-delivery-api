@@ -8,7 +8,7 @@ export class EmailController {
   constructor(private readonly emailService: EmailService) {}
 
   @Post()
-  public async send(@Body() dto: SendEmailDto): Promise<DefaultResponseDto> {
-    return await this.emailService.send(dto);
+  public send(@Body() dto: SendEmailDto): Promise<DefaultResponseDto> {
+    return this.emailService.send(dto);
   }
 }
