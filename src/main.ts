@@ -1,8 +1,10 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import helmet from 'helmet';
 import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
 import { AppModule } from './app.module';
+import { Environments } from './modules/enums/environments.enum';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -31,6 +33,11 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  // npm i helmet
+  if (process.env.NODE_ENV === Environments.PRODUCTION) {
+    app.use(helmet());
+    app.enableCors({});
+  }
   await app.listen(process.env.PORT ?? 3000);
 }
 void bootstrap();
