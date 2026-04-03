@@ -33,7 +33,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  // npm i helmet
   if (process.env.NODE_ENV === Environments.PRODUCTION) {
     app.use(helmet());
     app.enableCors({});
