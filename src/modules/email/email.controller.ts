@@ -1,10 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiInternalServerErrorResponse, ApiOperation } from '@nestjs/swagger';
+import { FixedTokenGuard } from 'src/common/guards/fixed-token.guard';
 import { DefaultResponseDto } from './dtos/default-response.dto';
 import { SendEmailDto } from './dtos/send-email.dto';
 import { EmailService } from './email.service';
 
 @Controller('email')
+@UseGuards(FixedTokenGuard)
 export class EmailController {
   constructor(private readonly emailService: EmailService) {}
 
