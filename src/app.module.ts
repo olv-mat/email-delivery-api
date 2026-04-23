@@ -4,8 +4,6 @@ import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { EmailModule } from './modules/email/email.module';
 
-// npm i @nestjs/throttler
-
 @Module({
   imports: [
     EmailModule,
