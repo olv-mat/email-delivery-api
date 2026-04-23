@@ -19,21 +19,21 @@ describe('EmailController', () => {
 
   describe('send', () => {
     it('should call the service with correct arguments and return a default response', async () => {
-      const dto = makeSendEmailDto();
-      const expectedResponse = makeDefaultResponseDto();
-      emailServiceMock.send.mockResolvedValue(expectedResponse);
-      const response = await emailController.send(dto);
+      const sendEmailDto = makeSendEmailDto();
+      const defaultResponseDto = makeDefaultResponseDto();
+      emailServiceMock.send.mockResolvedValue(defaultResponseDto);
+      const response = await emailController.send(sendEmailDto);
       expect(emailServiceMock.send).toHaveBeenCalledTimes(1);
-      expect(emailServiceMock.send).toHaveBeenCalledWith(dto);
-      expect(response).toEqual(expectedResponse);
+      expect(emailServiceMock.send).toHaveBeenCalledWith(sendEmailDto);
+      expect(response).toEqual(defaultResponseDto);
     });
 
     it('should propagate service exceptions', async () => {
-      const dto = makeSendEmailDto();
+      const sendEmailDto = makeSendEmailDto();
       emailServiceMock.send.mockRejectedValue(
         new InternalServerErrorException(),
       );
-      await expect(emailController.send(dto)).rejects.toThrow(
+      await expect(emailController.send(sendEmailDto)).rejects.toThrow(
         InternalServerErrorException,
       );
     });

@@ -8,7 +8,7 @@ export function setupSwagger(app: INestApplication): void {
     new DocumentBuilder()
       .setTitle('Email Delivery API')
       .setDescription(
-        'A lightweight microservice built with NestJS for sending personal emails. It provides a simple API to trigger email delivery for personal projects.',
+        'A lightweight service built with NestJS for sending personal emails. It provides a simple API to trigger email delivery for personal projects.',
       )
       .addBearerAuth()
       .setVersion('1.0')
