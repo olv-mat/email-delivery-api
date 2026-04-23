@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { validate } from 'class-validator';
 import { makeSendEmailDto } from './factories/send-email.dto.factory';
 
@@ -9,7 +8,7 @@ describe('SendEmailDto', () => {
     expect(errors.length).toBe(0);
   });
 
-  it('should fail if empty', async () => {
+  it('should fail if is empty', async () => {
     const dto = makeSendEmailDto({ subject: '' });
     const errors = await validate(dto);
     expect(errors.length).toBe(1);
@@ -17,8 +16,8 @@ describe('SendEmailDto', () => {
     expect(errors[0].constraints).toHaveProperty('isNotEmpty');
   });
 
-  it('should fail if not a string', async () => {
-    const dto = makeSendEmailDto({ text: null as any });
+  it('should fail if is not a string', async () => {
+    const dto = makeSendEmailDto({ text: undefined });
     const errors = await validate(dto);
     expect(errors.length).toBe(1);
     expect(errors[0].property).toBe('text');

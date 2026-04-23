@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { InternalServerErrorException } from '@nestjs/common';
 import { EmailController } from '../email.controller';
+import { EmailService } from '../email.service';
 import { makeDefaultResponseDto } from './factories/default-response.dto.factory';
 import { makeSendEmailDto } from './factories/send-email.dto.factory';
 
@@ -12,11 +12,13 @@ describe('EmailController', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    emailController = new EmailController(emailServiceMock as any);
+    emailController = new EmailController(
+      emailServiceMock as unknown as EmailService,
+    );
   });
 
   describe('send', () => {
-    it('should call the service with correct arguments and return the response', async () => {
+    it('should call the service with correct arguments and return a default response', async () => {
       const dto = makeSendEmailDto();
       const expectedResponse = makeDefaultResponseDto();
       emailServiceMock.send.mockResolvedValue(expectedResponse);
@@ -26,7 +28,7 @@ describe('EmailController', () => {
       expect(response).toEqual(expectedResponse);
     });
 
-    it('should propagate errors from the service', async () => {
+    it('should propagate service exceptions', async () => {
       const dto = makeSendEmailDto();
       emailServiceMock.send.mockRejectedValue(
         new InternalServerErrorException(),
