@@ -1,0 +1,8 @@
+name: email-delivery
+services:
+  email-delivery:
+    build: .
+    image: email-delivery:latest
+    container_name: email-delivery
+    ports:
+      - "3001:3001"
