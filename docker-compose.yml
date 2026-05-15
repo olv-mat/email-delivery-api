@@ -2,5 +2,7 @@ name: email-delivery
 services:
   app:
     build: .
+    env_file:
+      - .env
     ports:
       - "3001:3001"
