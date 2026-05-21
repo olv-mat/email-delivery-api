@@ -2,8 +2,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
+import { Environments } from './common/enums/environments.enum';
 import { setupSwagger } from './common/swagger/setup.swagger';
-import { Environments } from './modules/enums/environments.enum';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
