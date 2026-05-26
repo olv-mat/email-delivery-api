@@ -12,7 +12,7 @@ import { EmailModule } from './modules/email/email.module';
       throttlers: [
         {
           ttl: 60000,
-          limit: 1,
+          limit: 10,
         },
       ],
     }),

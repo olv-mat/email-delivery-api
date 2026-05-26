@@ -10,7 +10,7 @@ export class FixedTokenGuard implements CanActivate {
     this.token = this.configService.getOrThrow<string>('TOKEN');
   }
 
-  public canActivate(context: ExecutionContext) {
+  public canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest<Request>();
     const authorization = request.headers?.authorization;
     const [type, value] = authorization ? authorization.split(' ') : [];
