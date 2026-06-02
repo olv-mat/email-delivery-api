@@ -4,7 +4,7 @@ import { FixedTokenGuard } from 'src/common/guards/fixed-token.guard';
 import {
   SwaggerForbidden,
   SwaggerInternalServerError,
-} from 'src/common/swagger/decorators.swagger';
+} from 'src/common/settings/swagger/swagger.decorators';
 import { DefaultResponseDto } from './dtos/default-response.dto';
 import { SendEmailDto } from './dtos/send-email.dto';
 import { EmailService } from './email.service';
